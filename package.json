@@ -2,9 +2,9 @@
   "twilio": "1.5.0",
   "oauth": "0.9.11",
   "name": "apiai",
-  "main": "messenger.js",
+  "main": "payout/index.js",
   "scripts": {
-    "start": "node messenger.js"
+    "start": "node payout"
   },
   "dependencies": {
     "apiai": "^2.0.7",
