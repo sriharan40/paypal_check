@@ -24,7 +24,7 @@ var create_payout_json = {
                 "value": 100.00,
                 "currency": "USD"
             },
-            "receiver": "sowmisriharan-facilitator@gmail.com",
+            "receiver": "sowmisriharan@gmail.com",
             "note": "Thank you.",
             "sender_item_id": "item_3"
         }
