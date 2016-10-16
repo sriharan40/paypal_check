@@ -21,7 +21,7 @@ var create_payout_json = {
         {
             "recipient_type": "EMAIL",
             "amount": {
-                "value": 100.00,
+                "value": 0.90,
                 "currency": "USD"
             },
             "receiver": "sowmisriharan-facilitator@gmail.com",
