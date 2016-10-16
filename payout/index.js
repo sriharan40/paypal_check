@@ -1,44 +1,41 @@
-/* Copyright 2015-2016 PayPal, Inc. 
-
-Example to demonstrate creating a single synchronous payout, meaning the payment
-will be executed immediately and response returned in the batch_status entry in the 
-returned JSON object.
-
-*/
-
+/* Copyright 2015-2016 PayPal, Inc. */
 "use strict";
 var paypal = require('paypal-rest-sdk');
 require('../configure');
 
-var sender_batch_id = Math.random().toString(36).substring(9);
-
-var create_payout_json = {
-    "sender_batch_header": {
-        "sender_batch_id": sender_batch_id,
-        "email_subject": "You have a payment"
+var create_payment_json = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
     },
-    "items": [
-        {
-            "recipient_type": "EMAIL",
-            "amount": {
-                "value": 0.90,
-                "currency": "USD"
-            },
-            "receiver": "sowmisriharan-facilitator@gmail.com",
-            "note": "Thank you.",
-            "sender_item_id": "item_3"
-        }
-    ]
+    "redirect_urls": {
+        "return_url": "https://paypal-payout.herokuapp.com/",
+        "cancel_url": "https://paypal-payout.herokuapp.com/"
+    },
+    "transactions": [{
+        "item_list": {
+            "items": [{
+                "name": "item",
+                "sku": "item",
+                "price": "100.00",
+                "currency": "USD",
+                "quantity": 1
+            }]
+        },
+        "amount": {
+            "currency": "USD",
+            "total": "100.00"
+        },
+        "description": "This is the payment description."
+    }]
 };
 
-var sync_mode = 'true';
 
-paypal.payout.create(create_payout_json, sync_mode, function (error, payout) {
+paypal.payment.create(create_payment_json, function (error, payment) {
     if (error) {
-        console.log(error.response);
         throw error;
     } else {
-        console.log("Create Single Payout Response");
-        console.log(payout);
+        console.log("Create Payment Response");
+        console.log(payment);
     }
 });
