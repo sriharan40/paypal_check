@@ -2,9 +2,9 @@
   "twilio": "1.5.0",
   "oauth": "0.9.11",
   "name": "apiai",
-  "main": "payout/index.js",
+  "main": "database.js",
   "scripts": {
-    "start": "node payout"
+    "start": "node database.js"
   },
   "dependencies": {
     "apiai": "^2.0.7",
