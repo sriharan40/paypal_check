@@ -1,4 +1,7 @@
 var mysql = require('mysql');
+var app = express();
+app.use(express.logger());
+
 var db_config = {
     host: 'us-cdbr-iron-east-04.cleardb.net',
     user: 'b213965cc9ad75',
