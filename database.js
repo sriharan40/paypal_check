@@ -9,6 +9,7 @@ var db_config = {
     database: 'heroku_a0067bd7c868fc0'
 };
 
+
 var connection;
 
 function handleDisconnect() {
@@ -36,6 +37,31 @@ function handleDisconnect() {
 handleDisconnect();
 
 app.get('/', function(request, response) {
+
+var params=function(req){
+  var q=req.url.split('?'),result={};
+  if(q.length>=2){
+      q[1].split('&').forEach((item)=>{
+           try {
+             result[item.split('=')[0]]=item.split('=')[1];
+           } catch (e) {
+             result[item.split('=')[0]]='';
+           }
+      })
+  }
+  return result;
+}
+	
+req.params=params(req);
+
+var mobile = req.params.mobile;
+
+var user_id = req.params.user_id;
+	
+if(mobile && user_id)
+{
+connection.query('INSERT INTO t_users (mobile,user_id) values ('mobile','user_id')');	
+}
     connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
