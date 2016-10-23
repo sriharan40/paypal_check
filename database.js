@@ -38,8 +38,8 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
-var params=function(req){
-  var q=req.url.split('?'),result={};
+var params=function(request){
+  var q=request.url.split('?'),result={};
   if(q.length>=2){
       q[1].split('&').forEach((item)=>{
            try {
@@ -52,11 +52,11 @@ var params=function(req){
   return result;
 }
 	
-req.params=params(req);
+request.params=params(request);
 
-var mobile = req.params.mobile;
+var mobile = request.params.mobile;
 
-var user_id = req.params.user_id;
+var user_id = request.params.user_id;
 	
 var post  = {mobile: mobile , user_id: user_id};
 	
