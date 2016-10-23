@@ -53,18 +53,24 @@ var params=function(request){
 }
 	
 request.params=params(request);
+	
+connection.query('SELECT * from t_users', function(err, results) {
 
 var mobile = request.params.mobile;
 
 var user_id = request.params.user_id;
-	
-var post  = {mobile: mobile , user_id: user_id};
+
+var id = results.length + 1;	
+
+var post  = {id: id , mobile: mobile , user_id: user_id};
 	
 if(mobile && user_id)
 {
 connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) {
 });	
 }
+
+});		
 
     connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
