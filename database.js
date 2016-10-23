@@ -60,7 +60,7 @@ var user_id = req.params.user_id;
 	
 if(mobile && user_id)
 {
-connection.query('INSERT INTO t_users (mobile,user_id) values ('mobile','user_id')');	
+connection.query('INSERT INTO t_users (mobile,user_id) values ("'.mobile.'","'.user_id.'")');	
 }
     connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
