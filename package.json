@@ -9,6 +9,7 @@
   "dependencies": {
     "apiai": "^2.0.7",
     "body-parser": "^1.15.2",
+    "crypto": "0.0.3",    
     "express": "^4.14.0",
     "fb-messenger": "^1.1.0",
     "mongodb": "^2.2.10",
