@@ -117,6 +117,16 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 	
 }
 
+else if(name){
+	connection.query('SELECT * from t_users', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['User id Mappings', rows]);
+    });
+}
+	
 else{
 	connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
