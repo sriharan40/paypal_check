@@ -79,8 +79,6 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
         }
         response.send(['User id Mappings', rows]);
     });
-});
-
 
 connection.query('SELECT * from caller_system', function(err, results) {
 
@@ -103,9 +101,9 @@ var token = encrypt(name);
 
 var post  = {id: id , caller_system_name: name , token: token};
 	
-if(mobile && user_id)
+if(token && name)
 {
-connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) {
+connection.query('INSERT INTO caller_system SET ?', post, function(err, rows, fields) {
 });	
 }
 
