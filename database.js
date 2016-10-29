@@ -117,7 +117,19 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 	
 }
 
-else if(name){
+else if(name)
+{
+connection.query('SELECT * from caller_system', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Caller_system', rows]);
+    });
+	
+}
+
+else if(mobile){
 	connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
