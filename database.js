@@ -72,12 +72,51 @@ connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) 
 
 });		
 
-    connection.query('SELECT * from t_users', function(err, rows, fields) {
+connection.query('SELECT * from t_users', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
             throw err;
         }
         response.send(['User id Mappings', rows]);
+    });
+});
+
+
+connection.query('SELECT * from caller_system', function(err, results) {
+
+var name = request.params.name;
+
+var id = results.length + 1;	
+
+var crypto = require('crypto');
+var algorithm = 'aes-256-ctr';
+var password = 'd6F3Efeqrts';
+
+function encrypt(text){
+  var cipher = crypto.createCipher(algorithm,password)
+  var crypted = cipher.update(text,'utf8','hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+
+var token = encrypt(name);
+
+var post  = {id: id , caller_system_name: name , token: token};
+	
+if(mobile && user_id)
+{
+connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) {
+});	
+}
+
+});		
+
+connection.query('SELECT * from caller_system', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Caller_system', rows]);
     });
 });
 
