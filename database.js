@@ -53,6 +53,8 @@ var params=function(request){
 }
 	
 request.params=params(request);
+
+var caller = request.params.caller;
 	
 connection.query('SELECT * from t_users', function(err, results) {
 
@@ -71,14 +73,6 @@ connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) 
 }
 
 });		
-
-connection.query('SELECT * from t_users', function(err, rows, fields) {
-        if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-        response.send(['User id Mappings', rows]);
-    });
 
 connection.query('SELECT * from caller_system', function(err, results) {
 
@@ -109,6 +103,8 @@ connection.query('INSERT INTO caller_system SET ?', post, function(err, rows, fi
 
 });		
 
+if(caller)
+{
 connection.query('SELECT * from caller_system', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
@@ -116,6 +112,19 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
         }
         response.send(['Caller_system', rows]);
     });
+	
+}
+
+else{
+	connection.query('SELECT * from t_users', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['User id Mappings', rows]);
+    });
+}
+	
 });
 
 var port = process.env.PORT || 5000;
