@@ -55,28 +55,31 @@ var params=function(request){
 request.params=params(request);
 
 var caller = request.params.caller;
-	
-connection.query('SELECT * from t_users', function(err, results) {
 
 var mobile = request.params.mobile;
 
 var user_id = request.params.user_id;
 
+var name = request.params.name;
+
+if(mobile && user_id)
+{	
+connection.query('SELECT * from t_users', function(err, results) {
+
 var id = results.length + 1;	
 
 var post  = {id: id , mobile: mobile , user_id: user_id};
 	
-if(mobile && user_id)
-{
 connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) {
 });	
-}
 
 });		
 
-connection.query('SELECT * from caller_system', function(err, results) {
+}
 
-var name = request.params.name;
+else if(name)
+{
+connection.query('SELECT * from caller_system', function(err, results) {
 
 var id = results.length + 1;	
 
@@ -95,13 +98,12 @@ var token = encrypt(name);
 
 var post  = {id: id , caller_system_name: name , token: token};
 	
-if(token && name)
-{
 connection.query('INSERT INTO caller_system SET ?', post, function(err, rows, fields) {
 });	
-}
 
 });		
+
+}
 
 if(caller)
 {
