@@ -73,6 +73,14 @@ var post  = {id: id , mobile: mobile , user_id: user_id};
 connection.query('INSERT INTO t_users SET ?', post, function(err, rows, fields) {
 });	
 
+});
+
+connection.query('SELECT * from t_users', function(err, rows, fields) {
+	if (err) {
+		console.log('error: ', err);
+		throw err;
+	}
+	response.send(['User id Mappings', rows]);
 });		
 
 }
@@ -103,6 +111,14 @@ connection.query('INSERT INTO caller_system SET ?', post, function(err, rows, fi
 
 });		
 
+connection.query('SELECT * from caller_system', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Caller_system', rows]);
+    });
+	
 }
 
 if(caller)
@@ -115,28 +131,6 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
         response.send(['Caller_system', rows]);
     });
 	
-}
-
-else if(name)
-{
-connection.query('SELECT * from caller_system', function(err, rows, fields) {
-        if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-        response.send(['Caller_system', rows]);
-    });
-	
-}
-
-else if(mobile){
-	connection.query('SELECT * from t_users', function(err, rows, fields) {
-        if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-        response.send(['User id Mappings', rows]);
-    });
 }
 	
 else{
