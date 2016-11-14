@@ -68,6 +68,10 @@ var offer_name = request.params.offer_name;
 
 var description = request.params.description;
 
+var offer_name = ("" + offer_name).replace(/%20/g, ' ');
+
+var description = ("" + description).replace(/%20/g, ' ');
+
 if(mobile && user_id)
 {	
 connection.query('SELECT * from t_users', function(err, results) {
