@@ -64,13 +64,9 @@ var name = request.params.name;
 
 var offer = request.params.offer;
 
-var offer_name = request.params.offer_name;
+var offer_name = ("" + request.params.offer_name).replace(/%20/g, ' ');
 
-var description = request.params.description;
-
-var offer_name = ("" + offer_name).replace(/%20/g, ' ');
-
-var description = ("" + description).replace(/%20/g, ' ');
+var description = ("" + request.params.description).replace(/%20/g, ' ');
 
 if(mobile && user_id)
 {	
