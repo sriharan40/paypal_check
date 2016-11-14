@@ -62,6 +62,12 @@ var user_id = request.params.user_id;
 
 var name = request.params.name;
 
+var offer = request.params.offer;
+
+var offer_name = request.params.offer_name;
+
+var description = request.params.description;
+
 if(mobile && user_id)
 {	
 connection.query('SELECT * from t_users', function(err, results) {
@@ -81,6 +87,29 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 		throw err;
 	}
 	response.send(['User id Mappings', rows]);
+});		
+
+}
+
+else if(offer_name && description)
+{	
+connection.query('SELECT * from offers', function(err, results) {
+
+var id = results.length + 1;	
+
+var post  = {id: id , offer_name: offer_name , description: description};
+	
+connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
+});	
+
+});
+
+connection.query('SELECT * from offers', function(err, rows, fields) {
+	if (err) {
+		console.log('error: ', err);
+		throw err;
+	}
+	response.send(['Offers list', rows]);
 });		
 
 }
@@ -129,6 +158,18 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
             throw err;
         }
         response.send(['Caller_system', rows]);
+    });
+	
+}
+
+else if(offer)
+{
+connection.query('SELECT * from offers', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Offers list', rows]);
     });
 	
 }
