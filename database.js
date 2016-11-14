@@ -150,7 +150,7 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 	
 }
 
-if(caller)
+else if(caller)
 {
 connection.query('SELECT * from caller_system', function(err, rows, fields) {
         if (err) {
