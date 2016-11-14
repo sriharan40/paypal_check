@@ -62,7 +62,7 @@ var user_id = request.params.user_id;
 
 var name = request.params.name;
 
-var offer = request.params.offer;
+var offers = request.params.offer;
 
 var offer_name = ("" + request.params.offer_name).replace(/%20/g, ' ');
 
@@ -162,7 +162,7 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 	
 }
 
-else if(offer)
+else if(offers)
 {
 connection.query('SELECT * from offers', function(err, rows, fields) {
         if (err) {
