@@ -131,6 +131,7 @@ connection.query('SELECT * from offers', function(err, rows, fields) {
 else if(delete_offer && id)
 {
 connection.query('DELETE from offers WHERE id = ?', id, function(err, rows, fields) {
+response.send('Offer Deleted successfully');
 });		
 }
 
