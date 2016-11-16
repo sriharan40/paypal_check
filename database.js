@@ -64,6 +64,10 @@ var name = request.params.name;
 
 var offers = request.params.offer;
 
+var delete_offer = request.params.delete_offer;
+
+var id = request.params.id;
+
 var offer_name = request.params.offer_name;
 
 if(offer_name)
@@ -122,6 +126,12 @@ connection.query('SELECT * from offers', function(err, rows, fields) {
 	response.send(['Offers list', rows]);
 });		
 
+}
+
+else if(delete_offer && id)
+{
+connection.query('DELETE from offers WHERE id = ?', id, function(err, rows, fields) {
+});		
 }
 
 else if(name)
