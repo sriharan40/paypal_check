@@ -90,7 +90,9 @@ if(user_name && password)
 {
 connection.query('SELECT * from admin_user where login = ?', user_name, function(err, rows, results) {
 
-var pass = rows["pass"];
+var pass = results["pass"];
+
+console.log("password:"+pass);
 
 var count = results.length;
 
