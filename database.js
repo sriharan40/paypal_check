@@ -88,9 +88,9 @@ var description = ("" + request.params.description).replace(/%20/g, ' ');
 
 if(user_name && password)
 {
-connection.query('SELECT * from admin_user where login = ?', user_name, function(err, rows, results) {
+connection.query('SELECT * from admin_user where login = ?', user_name, function(err, results) {
 
-var pass = results["pass"];
+var pass = results[0].pass;
 
 console.log("password:"+pass);
 
@@ -236,5 +236,5 @@ else{
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
-    console.log("Listening on " + port);
+console.log("Listening on " + port);
 });
