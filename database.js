@@ -88,7 +88,7 @@ var description = ("" + request.params.description).replace(/%20/g, ' ');
 
 if(user_name && password)
 {
-connection.query('SELECT * from admin_user where login='+user_name+' and pass='+password+'', function(err, results) {
+connection.query('SELECT * from admin_user where login = ? and pass = ?', user_name, password, function(err, results) {
 
 var count = results.length;
 
