@@ -4,8 +4,8 @@ var app = express();
 
 var db_config = {
     host: 'us-cdbr-iron-east-04.cleardb.net',
-    user: 'b213965cc9ad75',
-    password: '9c81ac99',
+    user: process.env.db_user,
+    password: process.env.db_pass,
     database: 'heroku_a0067bd7c868fc0'
 };
 
@@ -168,7 +168,7 @@ var id = results.length + 1;
 
 var crypto = require('crypto');
 var algorithm = 'aes-256-ctr';
-var password = 'd6F3Efeqrts';
+var password = process.env.encrypt_pass;
 
 function encrypt(text){
   var cipher = crypto.createCipher(algorithm,password)
