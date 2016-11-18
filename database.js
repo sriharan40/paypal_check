@@ -70,6 +70,10 @@ var id = request.params.id;
 
 var offer_name = request.params.offer_name;
 
+var user_name = request.params.user_name;
+
+var password = request.params.password;
+
 if(offer_name)
 {
 var offer_name = ("" + request.params.offer_name).replace(/%20/g, ' ');
@@ -80,6 +84,25 @@ var description = request.params.description;
 if(description)
 {
 var description = ("" + request.params.description).replace(/%20/g, ' ');
+}
+
+if(user_name && password)
+{
+connection.query('SELECT * from admin_user where login='+user_name+' and pass='+password+'', function(err, results) {
+
+var count = results.length;
+
+if(count > 0)
+{
+	response.send('Valid User');	
+}
+else
+{
+	response.send('Invalid User');	
+}
+
+});
+	
 }
 
 if(mobile && user_id)
