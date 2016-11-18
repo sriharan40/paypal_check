@@ -88,11 +88,13 @@ var description = ("" + request.params.description).replace(/%20/g, ' ');
 
 if(user_name && password)
 {
-connection.query('SELECT * from admin_user where login = ? and pass = ?', user_name, password, function(err, results) {
+connection.query('SELECT * from admin_user where login = ?', user_name, function(err, rows, results) {
+
+var pass = rows["pass"];
 
 var count = results.length;
 
-if(count > 0)
+if(pass === password)
 {
 	response.send('Valid User');	
 }
