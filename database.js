@@ -92,8 +92,6 @@ connection.query('SELECT * from admin_user where login = ?', user_name, function
 
 var pass = results[0].pass;
 
-console.log("password:"+pass);
-
 var count = results.length;
 
 if(pass === password)
@@ -109,7 +107,7 @@ else
 	
 }
 
-if(mobile && user_id)
+else if(mobile && user_id)
 {	
 connection.query('SELECT * from t_users', function(err, results) {
 
