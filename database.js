@@ -221,7 +221,7 @@ connection.query('SELECT * from offers', function(err, rows, fields) {
 }
 	
 else{
-	connection.query('SELECT UNIQUE user_id from t_users', function(err, rows, fields) {
+	connection.query('SELECT * from t_users GROUP BY user_id', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
             throw err;
