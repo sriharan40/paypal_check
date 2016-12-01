@@ -9,7 +9,6 @@ var db_config = {
     database: 'heroku_a0067bd7c868fc0'
 };
 
-
 var connection;
 
 function handleDisconnect() {
@@ -64,6 +63,8 @@ var name = request.params.name;
 
 var offers = request.params.offer;
 
+var category = request.params.category;
+
 var delete_offer = request.params.delete_offer;
 
 var id = request.params.id;
@@ -73,6 +74,27 @@ var offer_name = request.params.offer_name;
 var user_name = request.params.user_name;
 
 var password = request.params.password;
+
+var category_title = request.params.category_title;
+
+if(category_title)
+{
+var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
+}
+
+var category_sub_title = request.params.category_sub_title;
+
+if(category_sub_title)
+{
+var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
+}
+
+var category_img_url = request.params.category_img_url;
+
+if(category_img_url)
+{
+var category_img_url = ("" + request.params.category_img_url).replace(/%20/g, ' ');	
+}
 
 if(offer_name)
 {
@@ -104,6 +126,41 @@ else
 }
 
 });
+	
+}
+
+else if(category_title && category_sub_title && category_img_url)
+{
+connection.query('SELECT * from category', function(err, results) {
+
+var id = results.length + 1;	
+
+var post  = {id: id , title: category_title , sub_title: category_sub_title , img_url: category_img_url};
+	
+connection.query('INSERT INTO category SET ?', post, function(err, rows, fields) {
+});	
+
+});
+
+connection.query('SELECT * from category', function(err, rows, fields) {
+	if (err) {
+		console.log('error: ', err);
+		throw err;
+	}
+	response.send(['Offer category', rows]);
+});		
+	
+}
+
+else if(category)
+{
+connection.query('SELECT * from category', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Offers category list', rows]);
+    });
 	
 }
 
