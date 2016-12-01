@@ -135,9 +135,9 @@ connection.query('SELECT * from category', function(err, results) {
 
 var id = results.length + 1;	
 
-var post  = {id: id , title: category_title , sub_title: category_sub_title , img_url: category_img_url};
+var post  = {title: category_title , sub_title: category_sub_title , img_url: category_img_url};
 	
-connection.query('INSERT INTO category SET ?', post, function(err, rows, fields) {
+connection.query('UPDATE category SET ?', post, function(err, rows, fields) {
 });	
 
 });
