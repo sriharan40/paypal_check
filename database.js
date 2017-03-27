@@ -173,6 +173,8 @@ else if(mobile && user_id)
 
 	AWS.config.update({
 	  region: "us-west-2",
+	  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 	  endpoint: "https://dynamodb.us-west-2.amazonaws.com"
 	});
 
