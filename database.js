@@ -1,6 +1,8 @@
 var express = require('express');
 var mysql = require('mysql');
 var app = express();
+var AWS = require('aws-sdk');
+
 
 var db_config = {
     host: 'us-cdbr-iron-east-04.cleardb.net',
@@ -166,6 +168,38 @@ connection.query('SELECT * from category', function(err, rows, fields) {
 
 else if(mobile && user_id)
 {	
+
+	//AWS database code
+
+	AWS.config.update({
+	  region: "us-west-2",
+	  endpoint: "https://dynamodb.us-west-2.amazonaws.com"
+	});
+
+	var docClient = new AWS.DynamoDB.DocumentClient();
+
+	var table = "t_users";	
+	
+	var params = {
+		TableName:table,
+		Item:{
+			"fb_user_id": user_id,
+			"id": Math.floor(1000 + Math.random() * 9999),
+			"mobile": mobile
+		}
+	};
+	
+	console.log("Params:"+JSON.stringify(params));
+	
+	docClient.put(params, function(err, data_output) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data_output, null, 2));
+		}
+	});
+	
+
 connection.query('SELECT * from t_users', function(err, results) {
 
 var id = results.length + 1;	
