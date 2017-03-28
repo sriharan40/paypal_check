@@ -3,6 +3,14 @@ var mysql = require('mysql');
 var app = express();
 var AWS = require('aws-sdk');
 
+AWS.config.update({
+  region: "us-west-2",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  endpoint: "https://dynamodb.us-west-2.amazonaws.com"
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
 
 var db_config = {
     host: 'us-cdbr-iron-east-04.cleardb.net',
@@ -171,15 +179,6 @@ else if(mobile && user_id)
 
 	//AWS database code
 
-	AWS.config.update({
-	  region: "us-west-2",
-	  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	  endpoint: "https://dynamodb.us-west-2.amazonaws.com"
-	});
-
-	var docClient = new AWS.DynamoDB.DocumentClient();
-
 	var table = "t_users";	
 	
 	var params = {
@@ -224,8 +223,32 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 }
 
 else if(offer_name && description)
-{	
-connection.query('SELECT * from offers', function(err, results) {
+{
+
+	//AWS database code
+
+	var table = "offers";	
+	
+	var params = {
+		TableName:table,
+		Item:{
+			"offer_name": offer_name,
+			"id": Math.floor(1000 + Math.random() * 9999),
+			"description": description
+		}
+	};
+	
+	console.log("Params:"+JSON.stringify(params));
+	
+	docClient.put(params, function(err, data_output) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data_output, null, 2));
+		}
+	});
+	
+/* connection.query('SELECT * from offers', function(err, results) {
 
 var id = results.length + 1;	
 
@@ -234,7 +257,9 @@ var post  = {id: id , offer_name: offer_name , description: description};
 connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 });	
 
-});
+}); */
+
+
 
 connection.query('SELECT * from offers', function(err, rows, fields) {
 	if (err) {
