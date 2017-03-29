@@ -299,9 +299,24 @@ connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 
 else if(delete_offer && id)
 {
-connection.query('DELETE from offers WHERE id = ?', id, function(err, rows, fields) {
-response.send('Offer Deleted successfully');
-});		
+	var delete_params = {
+		TableName:table,
+	Key: {
+        id: id
+		}
+};
+
+	docClient.deleteTable(delete_params, function(err, data) {
+		if (err) {
+			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			response.send('Offer Deleted successfully');
+		}		
+	});
+	
+//connection.query('DELETE from offers WHERE id = ?', id, function(err, rows, fields) {
+
+//});		
 }
 
 else if(name)
@@ -354,7 +369,6 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 
 else if(offers)
 {
-
 
 var table = "offers";	
 
