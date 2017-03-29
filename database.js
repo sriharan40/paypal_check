@@ -304,13 +304,17 @@ else if(delete_offer && id)
 	var table = "offers";	
 
 	var delete_params = {
-	TableName:table
+	TableName:table,
+	Key: {
+    "HashKey": 'hashkey',
+    "id": id
+  }	
 };
 
 	console.log("Params:"+JSON.stringify(delete_params));
 
 
-	dynamodb.deleteTable(delete_params, function(err, data) {
+	dynamodb.delete(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
