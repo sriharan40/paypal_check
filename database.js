@@ -229,12 +229,16 @@ else if(offer_name && description)
 
 	var table = "offers";	
 
-	var select_params = {
+	var count_params = {
 		TableName:table,
 		Select: 'COUNT'
 	};
 	
-	docClient.scan(select_params, function(err, data) {
+	var select_params = {
+		TableName:table
+	};
+	
+	docClient.scan(count_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
@@ -275,13 +279,21 @@ connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 
 
 
-connection.query('SELECT * from offers', function(err, rows, fields) {
+/* connection.query('SELECT * from offers', function(err, rows, fields) {
 	if (err) {
 		console.log('error: ', err);
 		throw err;
 	}
 	response.send(['Offers list', rows]);
-});		
+}); */		
+
+	docClient.scan(select_params, function(err, data) {
+		if (err) {
+			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+		response.send(['Offers list', data]);
+		}		
+	});	
 
 }
 
