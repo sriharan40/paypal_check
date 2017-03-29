@@ -10,6 +10,8 @@ AWS.config.update({
   endpoint: "https://dynamodb.us-west-2.amazonaws.com"
 });
 
+var dynamodb = new AWS.DynamoDB();
+
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 var db_config = {
@@ -246,8 +248,8 @@ else if(offer_name && description)
 	var params = {
 		TableName:table,
 		Item:{
-			"offer_name": offer_name,
 			"id": data.Count + 1,
+			"offer_name": offer_name,
 			"description": description
 		}
 	};
@@ -301,6 +303,15 @@ else if(delete_offer && id)
 {
 	var table = "offers";	
 
+	var select_params = {
+	TableName:table,
+    ProjectionExpression: "id"	
+	}
+	
+	docClient.query(select_params, function(err, data) {
+		
+	});
+	
 	var delete_params = {
 	TableName:table,
 	Key: {
@@ -311,7 +322,7 @@ else if(delete_offer && id)
 	console.log("Params:"+JSON.stringify(delete_params));
 
 
-	docClient.delete(delete_params, function(err, data) {
+	dynamodb.deleteTable(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
