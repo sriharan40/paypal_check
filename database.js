@@ -303,17 +303,15 @@ else if(delete_offer && id)
 
 	var delete_params = {
 	TableName:table,
-	Key: {
-        "id": id,
-        "description": "Facebook offers1",
-        "offer_name": "facebook_offers1"
+	Item: {
+        "id": id
 		}
 };
 
 	console.log("Params:"+JSON.stringify(delete_params));
 
 
-	docClient.delete(delete_params, function(err, data) {
+	docClient.DeleteItem(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
