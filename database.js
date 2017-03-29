@@ -228,12 +228,22 @@ else if(offer_name && description)
 	//AWS database code
 
 	var table = "offers";	
+
+	var select_params = {
+		TableName:table,
+		Select: 'COUNT'
+	};
+	
+	docClient.scan(select_params, function(err, data) {
+		if (err) {
+			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
 	
 	var params = {
 		TableName:table,
 		Item:{
 			"offer_name": offer_name,
-			"id": Math.floor(1000 + Math.random() * 9999),
+			"id": data,
 			"description": description
 		}
 	};
@@ -247,6 +257,10 @@ else if(offer_name && description)
 			console.log("Added item:", JSON.stringify(data_output, null, 2));
 		}
 	});
+	
+		}
+
+});
 	
 /* connection.query('SELECT * from offers', function(err, results) {
 
