@@ -303,20 +303,8 @@ else if(delete_offer && id)
 {
 	var table = "offers";	
 
-	var select_params = {
-	TableName:table,
-    ProjectionExpression: "id"	
-	}
-	
-	docClient.query(select_params, function(err, data) {
-		
-	});
-	
 	var delete_params = {
-	TableName:table,
-	Key: {
-        "id":id
-		}
+	TableName:table
 };
 
 	console.log("Params:"+JSON.stringify(delete_params));
