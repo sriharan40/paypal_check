@@ -291,7 +291,7 @@ connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
-		response.send(['Offers list', data]);
+		response.send(['Offers list', data.Items]);
 		}		
 	});	
 
