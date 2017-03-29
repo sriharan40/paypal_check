@@ -299,18 +299,20 @@ connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 
 else if(delete_offer && id)
 {
-	
 	var table = "offers";	
-	
+
 	var delete_params = {
 	TableName:table,
 	Key: {
-        "id": id
+        "id": id,
+        "description": "Facebook offers1",
+        "offer_name": "facebook_offers1"
 		}
 };
 
 	console.log("Params:"+JSON.stringify(delete_params));
-	
+
+
 	docClient.delete(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
