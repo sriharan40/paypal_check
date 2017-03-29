@@ -314,7 +314,7 @@ else if(delete_offer && id)
 	console.log("Params:"+JSON.stringify(delete_params));
 
 
-	dynamodb.delete(delete_params, function(err, data) {
+	docClient.delete(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
