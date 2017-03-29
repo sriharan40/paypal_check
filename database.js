@@ -302,9 +302,9 @@ else if(delete_offer && id)
 	var table = "offers";	
 
 	var delete_params = {
-	TableName: table,
-	Item: {
-        "id": id
+	TableName:table,
+	Key: {
+        "id":id
 		}
 };
 
