@@ -243,7 +243,7 @@ else if(offer_name && description)
 		TableName:table,
 		Item:{
 			"offer_name": offer_name,
-			"id": data.Count,
+			"id": data.Count + 1,
 			"description": description
 		}
 	};
