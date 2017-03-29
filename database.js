@@ -354,13 +354,22 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 
 else if(offers)
 {
-connection.query('SELECT * from offers', function(err, rows, fields) {
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {
+response.send(['Offers list', data.Items]);
+}		
+});
+
+/* connection.query('SELECT * from offers', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
             throw err;
         }
         response.send(['Offers list', rows]);
-    });
+    }); */
 	
 }
 	
