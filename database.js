@@ -355,6 +355,13 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 else if(offers)
 {
 
+
+var table = "offers";	
+
+var select_params = {
+	TableName:table
+};
+
 docClient.scan(select_params, function(err, data) {
 if (err) {
 	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
