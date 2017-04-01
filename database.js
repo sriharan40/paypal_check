@@ -306,8 +306,7 @@ else if(delete_offer && id)
 	var delete_params = {
 	TableName:table,
 	Key: {
-		HashKey: "hashkey",
-		id: "4"
+		"id": id
   }	
 };
 
