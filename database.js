@@ -143,6 +143,8 @@ else
 
 else if(category_title && category_sub_title && category_img_url)
 {
+var table = "category";	
+
 connection.query('SELECT * from category', function(err, results) {
 
 var id = results.length + 1;	
@@ -154,25 +156,52 @@ connection.query('UPDATE category SET ?', post, function(err, rows, fields) {
 
 });
 
-connection.query('SELECT * from category', function(err, rows, fields) {
+
+var select_params = {
+	TableName:table
+};
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {
+response.send(['Offers category list', data.Items]);
+}		
+});
+
+/* connection.query('SELECT * from category', function(err, rows, fields) {
 	if (err) {
 		console.log('error: ', err);
 		throw err;
 	}
 	response.send(['Offer category', rows]);
-});		
+}); */		
 	
 }
 
 else if(category)
 {
-connection.query('SELECT * from category', function(err, rows, fields) {
+var table = "category";	
+
+var select_params = {
+	TableName:table
+};
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {
+response.send(['Offers category list', data.Items]);
+}		
+});
+
+/* connection.query('SELECT * from category', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
             throw err;
         }
         response.send(['Offers category list', rows]);
-    });
+    }); */
 	
 }
 
@@ -306,7 +335,7 @@ else if(delete_offer && id)
 	var delete_params = {
 	TableName:table,
 	Key: {
-		"id-index": id
+		"id": id
   }	
 };
 
