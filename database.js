@@ -366,7 +366,7 @@ var table = "offers";
 var delete_params = {
 	TableName:table,
 	Key: {
-		"id": int(id)
+		"id": parseInt(id)
   },
     UpdateExpression: "set offer_name = :n, description=:d",
     ExpressionAttributeValues:{
