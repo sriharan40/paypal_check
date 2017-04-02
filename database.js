@@ -87,25 +87,25 @@ var user_name = request.params.user_name;
 
 var password = request.params.password;
 
-var category_title = request.params.category;
+var categorytitle = request.params.category;
 
-if(category_title)
+if(categorytitle)
 {
 //var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
 }
 
-var category_sub_title = request.params.category;
+var categorysubtitle = request.params.category;
 
-if(category_sub_title)
+if(categorysubtitle)
 {
 //var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
 }
 
-var category_img_url = request.params.category;
+var categoryimgurl = request.params.category;
 
-if(category_img_url)
+if(categoryimgurl)
 {
-var category_img_url = ("" + request.params.category_img_url).replace(/%20/g, ' ');	
+//var category_img_url = ("" + request.params.category_img_url).replace(/%20/g, ' ');	
 }
 
 if(offer_name)
