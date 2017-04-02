@@ -49,7 +49,7 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
-console.log("Request:"+request);
+console.log("Request:"+JSON.stringify(request));
 
 var params=function(request){
   var q=request.url.split('?'),result={};
