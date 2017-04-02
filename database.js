@@ -151,7 +151,7 @@ if (err) {
 
 var pass = data.pass;
 
-console.log("Data:"+data);
+console.log("Data:"+JSON.stringify(data));
 console.log("Pass:"+pass);
 
 if(pass === password)
