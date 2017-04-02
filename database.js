@@ -135,8 +135,12 @@ var table = "admin_user";
 
 var select_params1 = {
 	TableName:table,
-	Key: {
-        "login":user_name
+    KeyConditionExpression: "#l = :login",
+	ExpressionAttributeNames:{
+        "#l": "login"
+    },
+    ExpressionAttributeValues: {
+        ":login":user_name
     }
 };
 
