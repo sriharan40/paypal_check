@@ -91,7 +91,7 @@ var categorytitle = request.params.category_title;
 
 if(categorytitle)
 {
-var categorytitle = ("" + request.params.categorytitle).replace(/%20/g, ' ');	
+var categorytitle = ("" + categorytitle).replace(/%20/g, ' ');	
 }
 
 console.log("Category Title:"+categorytitle);
@@ -100,18 +100,21 @@ var categorysubtitle = request.params.category_sub_title;
 
 if(categorysubtitle)
 {
-var categorysubtitle = ("" + request.params.categorysubtitle).replace(/%20/g, ' ');	
+var categorysubtitle = ("" + categorysubtitle).replace(/%20/g, ' ');	
 }
 
 console.log("Category Sub Title:"+categorysubtitle);
 
 
-var categoryimgurl = request.params.cate1;
+var categoryimgurl = request.params.category_img_url;
 
 if(categoryimgurl)
 {
-//var category_img_url = ("" + request.params.category_img_url).replace(/%20/g, ' ');	
+var categoryimgurl = ("" + categoryimgurl).replace(/%20/g, ' ');	
 }
+
+console.log("Category Img URL:"+categoryimgurl);
+
 
 if(offer_name)
 {
