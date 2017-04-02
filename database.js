@@ -135,6 +135,7 @@ var table = "admin_user";
 
 var select_params1 = {
 	TableName:table,
+	ProjectionExpression: "pass",
 	FilterExpression: "#login = :l",
 	ExpressionAttributeNames: {
 		"#login": "login",
