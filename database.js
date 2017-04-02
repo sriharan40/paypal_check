@@ -49,8 +49,6 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
-console.log("Request:"+JSON.stringify(request.body));
-
 var params=function(request){
   var q=request.url.split('?'),result={};
   if(q.length>=2){
@@ -89,21 +87,21 @@ var user_name = request.params.user_name;
 
 var password = request.params.password;
 
-var category_title = request.params.category_title;
+var category_title = request.params.category;
 
 if(category_title)
 {
 //var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
 }
 
-var category_sub_title = request.params.category_sub_title;
+var category_sub_title = request.params.category;
 
 if(category_sub_title)
 {
 //var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
 }
 
-var category_img_url = request.params.category_img_url;
+var category_img_url = request.params.category;
 
 if(category_img_url)
 {
