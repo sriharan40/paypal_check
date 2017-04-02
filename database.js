@@ -87,21 +87,21 @@ var user_name = request.params.user_name;
 
 var password = request.params.password;
 
-var categorytitle = request.params.category;
+var categorytitle = request.params.cate1;
 
 if(categorytitle)
 {
 //var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
 }
 
-var categorysubtitle = request.params.category;
+var categorysubtitle = request.params.cate1;
 
 if(categorysubtitle)
 {
 //var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
 }
 
-var categoryimgurl = request.params.category;
+var categoryimgurl = request.params.cate1;
 
 if(categoryimgurl)
 {
