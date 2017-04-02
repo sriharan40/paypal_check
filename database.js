@@ -141,7 +141,7 @@ else
 	
 }
 
-else if(category_title && category_sub_title && category_img_url)
+else if(categorytitle && categorysubtitle && categoryimgurl)
 {
 var table = "category";	
 
@@ -152,9 +152,9 @@ var update_params = {
     },
     UpdateExpression: "set title = :t, sub_title=:s, img_url=:i",
     ExpressionAttributeValues:{
-        ":t":category_title,
-        ":s":category_sub_title,
-        ":i":category_img_url
+        ":t":categorytitle,
+        ":s":categorysubtitle,
+        ":i":categoryimgurl
     },
     ReturnValues:"UPDATED_NEW"
 };
