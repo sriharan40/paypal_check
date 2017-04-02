@@ -137,6 +137,13 @@ var select_params = {
 	TableName:table,
 	Key:{
 		"id" : 1
+	},
+	FilterExpression: "#login = :l",
+	ExpressionAttributeNames: {
+		"#login":"login",
+	},
+	ExpressionAttributeValues: {
+		 ":l":user_name
 	}		
 };
 
@@ -152,6 +159,7 @@ if (err) {
 var pass = data.pass;
 
 console.log("Data:"+JSON.stringify(data));
+
 console.log("Pass:"+pass);
 
 if(pass === password)
