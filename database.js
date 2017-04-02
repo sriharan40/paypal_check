@@ -361,7 +361,7 @@ connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
 
 else if(delete_offer && id)
 {
-	var table = "offers";	
+var table = "offers";	
 
 var delete_params = {
 	TableName:table,
