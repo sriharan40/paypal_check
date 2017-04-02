@@ -135,7 +135,7 @@ var table = "admin_user";
 
 var select_params1 = {
 	TableName:table,
-	ExpressionAttributeValues: {
+	Key: {
         "login":user_name
     }
 };
