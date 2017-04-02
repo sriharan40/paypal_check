@@ -49,6 +49,8 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
+console.log("Request:"+request);
+
 var params=function(request){
   var q=request.url.split('?'),result={};
   if(q.length>=2){
@@ -358,7 +360,7 @@ else if(delete_offer && id)
 	var delete_params = {
 	TableName:table,
 	Key: {
-		"id": 4
+		"id": id
   }	
 };
 
