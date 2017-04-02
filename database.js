@@ -135,11 +135,14 @@ var table = "admin_user";
 
 var select_params1 = {
 	TableName:table,
-FilterExpression:"login = :l",
-    ExpressionAttributeValues:{
+	FilterExpression:"login = :l",
+    ExpressionAttributeValues:
+	{
      ":l":user_name
     }
 };
+
+console.log("Params:"+JSON.stringify(select_params1));
 
 docClient.scan(select_params1, function(err, data) {
 if (err) {
