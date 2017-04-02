@@ -155,6 +155,8 @@ if (err) {
 
 var pass = data.pass;
 
+console.log("Pass:"+pass);
+
 if(pass === password)
 {
 	response.send('Valid User');	
