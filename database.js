@@ -367,33 +367,18 @@ var delete_params = {
 	TableName:table,
 	Key: {
 		"id": parseInt(id)
-  },
-    UpdateExpression: "set offer_name = :n, description=:d",
-    ExpressionAttributeValues:{
-        ":n":"-",
-        ":d":"-"
-    },
-    ReturnValues:"UPDATED_NEW"
+  }
 };
 
 console.log("Params:"+JSON.stringify(delete_params));
 
-console.log("Updating the item...");
-docClient.update(delete_params, function(err, data) {
-    if (err) {
-        console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-	}
-});
-
-/*	docClient.delete(delete_params, function(err, data) {
+docClient.delete(delete_params, function(err, data) {
 		if (err) {
 			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 		} else {
 			response.send('Offer Deleted successfully');
 		}		
-	}); */
+	});
 	
 //connection.query('DELETE from offers WHERE id = ?', id, function(err, rows, fields) {
 
