@@ -156,7 +156,7 @@ if (err) {
 	
 /* connection.query('SELECT * from admin_user where login = ?', user_name, function(err, results) { */
 
-var pass = Items[0].pass;
+var pass = data.Items[0].pass;
 
 console.log("Data:"+JSON.stringify(data));
 
