@@ -89,19 +89,22 @@ var password = request.params.password;
 
 var categorytitle = request.params.category_title;
 
-console.log("Category Title:"+categorytitle);
-
 if(categorytitle)
 {
-//var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
+var categorytitle = ("" + request.params.categorytitle).replace(/%20/g, ' ');	
 }
 
-var categorysubtitle = request.params.cate1;
+console.log("Category Title:"+categorytitle);
+
+var categorysubtitle = request.params.category_sub_title;
 
 if(categorysubtitle)
 {
-//var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
+var categorysubtitle = ("" + request.params.categorysubtitle).replace(/%20/g, ' ');	
 }
+
+console.log("Category Sub Title:"+categorysubtitle);
+
 
 var categoryimgurl = request.params.cate1;
 
