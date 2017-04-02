@@ -133,21 +133,20 @@ if(user_name && password)
 
 var table = "admin_user";	
 
-var select_params1 = {
+var select_params = {
 	TableName:table,
-	ProjectionExpression: "pass",
 	FilterExpression: "#login = :l",
 	ExpressionAttributeNames: {
-		"#login": "login",
+		"#login":"login",
 	},
 	ExpressionAttributeValues: {
-		 ":l": user_name
+		 ":l":user_name
 	}		
 };
 
-console.log("Params:"+JSON.stringify(select_params1));
+console.log("Params:"+JSON.stringify(select_params));
 
-docClient.scan(select_params1, function(err, data) {
+docClient.scan(select_params, function(err, data) {
 if (err) {
 	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 } else {
