@@ -135,11 +135,13 @@ var table = "admin_user";
 
 var select_params1 = {
 	TableName:table,
-	FilterExpression:"login = :l",
-    ExpressionAttributeValues:
-	{
-     ":l":user_name
-    }
+	FilterExpression: "#login = :l",
+	ExpressionAttributeNames: {
+		"#login": "login",
+	},
+	ExpressionAttributeValues: {
+		 ":l": user_name
+	}		
 };
 
 console.log("Params:"+JSON.stringify(select_params1));
