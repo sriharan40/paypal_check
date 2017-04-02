@@ -137,13 +137,6 @@ var select_params = {
 	TableName:table,
 	Key:{
 		"id" : 1
-	},
-	FilterExpression: "#login = :l",
-	ExpressionAttributeNames: {
-		"#login":"login",
-	},
-	ExpressionAttributeValues: {
-		 ":l":user_name
 	}		
 };
 
