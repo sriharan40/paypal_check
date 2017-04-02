@@ -145,7 +145,28 @@ else if(category_title && category_sub_title && category_img_url)
 {
 var table = "category";	
 
-connection.query('SELECT * from category', function(err, results) {
+var update_params = {
+    TableName:table,
+    Key:{
+        "id": 1
+    },
+    UpdateExpression: "set title = :t, sub_title=:s, img_url=:i",
+    ExpressionAttributeValues:{
+        ":t":category_title,
+        ":s":category_sub_title,
+        ":i":category_img_url
+    },
+    ReturnValues:"UPDATED_NEW"
+};
+
+console.log("Updating the item...");
+docClient.update(params, function(err, data) {
+    if (err) {
+        console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+
+/* connection.query('SELECT * from category', function(err, results) {
 
 var id = results.length + 1;	
 
@@ -154,8 +175,7 @@ var post  = {title: category_title , sub_title: category_sub_title , img_url: ca
 connection.query('UPDATE category SET ?', post, function(err, rows, fields) {
 });	
 
-});
-
+}); */
 
 var select_params = {
 	TableName:table
@@ -167,6 +187,9 @@ if (err) {
 } else {
 response.send(['Offers category list', data.Items]);
 }		
+});
+
+    }
 });
 
 /* connection.query('SELECT * from category', function(err, rows, fields) {
@@ -335,7 +358,7 @@ else if(delete_offer && id)
 	var delete_params = {
 	TableName:table,
 	Key: {
-		"id": id
+		"id": 4
   }	
 };
 
