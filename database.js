@@ -135,7 +135,7 @@ var table = "admin_user";
 
 var select_params = {
 	TableName:table,
-	Key {
+	Key:{
 		"id" : 1
 	},
 	FilterExpression: "#login = :l",
