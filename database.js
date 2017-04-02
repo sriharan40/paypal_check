@@ -130,11 +130,24 @@ var description = ("" + request.params.description).replace(/%20/g, ' ');
 
 if(user_name && password)
 {
-connection.query('SELECT * from admin_user where login = ?', user_name, function(err, results) {
 
-var pass = results[0].pass;
+var table = "admin_user";	
 
-var count = results.length;
+var select_params1 = {
+	TableName:table,
+	ExpressionAttributeValues: {
+        "login":user_name
+    }
+};
+
+docClient.scan(select_params1, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {
+	
+/* connection.query('SELECT * from admin_user where login = ?', user_name, function(err, results) { */
+
+var pass = data.pass;
 
 if(pass === password)
 {
@@ -145,7 +158,11 @@ else
 	response.send('Invalid User');	
 }
 
+}		
+
 });
+
+/* }); */
 	
 }
 
