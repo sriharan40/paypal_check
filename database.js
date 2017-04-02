@@ -49,6 +49,8 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
+console.log("Request:"+JSON.parse(request));
+
 var params=function(request){
   var q=request.url.split('?'),result={};
   if(q.length>=2){
