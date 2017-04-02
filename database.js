@@ -370,8 +370,8 @@ var delete_params = {
   },
     UpdateExpression: "set offer_name = :n, description=:d",
     ExpressionAttributeValues:{
-        ":n":"",
-        ":d":""
+        ":n":"-",
+        ":d":"-"
     },
     ReturnValues:"UPDATED_NEW"
 };
