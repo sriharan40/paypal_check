@@ -363,12 +363,25 @@ else if(delete_offer && id)
 {
 	var table = "offers";	
 
-	var delete_params = {
+var delete_params = {
 	TableName:table,
 	Key: {
 		"id": id
-  }	
+  },
+    UpdateExpression: "set offer_name = :n, description=:d",
+    ExpressionAttributeValues:{
+        ":n":"",
+        ":d":""
+    },
+    ReturnValues:"UPDATED_NEW"
 };
+
+console.log("Updating the item...");
+docClient.update(delete_params, function(err, data) {
+    if (err) {
+        console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
 
 	console.log("Params:"+JSON.stringify(delete_params));
 
