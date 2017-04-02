@@ -87,7 +87,9 @@ var user_name = request.params.user_name;
 
 var password = request.params.password;
 
-var categorytitle = request.params.cate1;
+var categorytitle = request.params.cate;
+
+console.log("Category Title:"+categorytitle);
 
 if(categorytitle)
 {
