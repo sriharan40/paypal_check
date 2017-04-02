@@ -49,7 +49,7 @@ handleDisconnect();
 
 app.get('/', function(request, response) {
 
-console.log("Request:"+JSON.parse(request));
+console.log("Request:"+JSON.stringify(request));
 
 var params=function(request){
   var q=request.url.split('?'),result={};
@@ -93,14 +93,14 @@ var category_title = request.params.category_title;
 
 if(category_title)
 {
-//var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
+var category_title = ("" + request.params.category_title).replace(/%20/g, ' ');	
 }
 
 var category_sub_title = request.params.category_sub_title;
 
 if(category_sub_title)
 {
-//var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
+var category_sub_title = ("" + request.params.category_sub_title).replace(/%20/g, ' ');	
 }
 
 var category_img_url = request.params.category_img_url;
