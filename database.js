@@ -156,6 +156,8 @@ if (err) {
 	
 /* connection.query('SELECT * from admin_user where login = ?', user_name, function(err, results) { */
 
+try
+{
 var pass = data.Items[0].pass;
 
 console.log("Data:"+JSON.stringify(data));
@@ -171,6 +173,13 @@ else
 	response.send('Invalid User');	
 }
 
+}
+	
+catch(e)
+{
+	response.send('Invalid User');	
+}
+	
 }		
 
 });
@@ -503,6 +512,8 @@ response.send(['Offers list', data.Items]);
 	
 else{
 	
+	var table = "t_users";	
+	
 	var select_params = {
 		TableName:table
 	};
@@ -516,7 +527,6 @@ else{
 		}		
 	});	
 	
-	
 	/* connection.query('SELECT * from t_users GROUP BY user_id', function(err, rows, fields) {
         if (err) {
             console.log('error: ', err);
@@ -524,6 +534,7 @@ else{
         }
         response.send(['User id Mappings', rows]);
     }); */
+	
 }
 	
 });
