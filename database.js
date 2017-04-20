@@ -208,7 +208,7 @@ if (err) {
 } else {	
 data.Items.forEach(function(item) {  
 	 arr12.push({
-		fb_user_id		 
+		item.fb_user_id		 
 	  })
 });
 
