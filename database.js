@@ -1,8 +1,8 @@
 var express = require('express');
 var mysql = require('mysql');
 var app = express();
-var request11 = require("request");
 var AWS = require('aws-sdk');
+var request12 = require("request");
 
 AWS.config.update({
   region: "us-west-2",
