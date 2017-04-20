@@ -214,7 +214,6 @@ function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
-
 var uni_arr12 = arr12.filter( onlyUnique );
 
 console.log("Users:"+JSON.stringify(uni_arr12));
@@ -276,7 +275,9 @@ console.log("MessageData:"+JSON.stringify(messageData));
 
 var token = process.env.FB_PAGE_TOKEN;
 
-var user_id = '1627615607263900';
+uni_arr12.forEach(function(arr13) {
+
+var user_id = arr13;
 
 var requestData12 = {
       url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -303,6 +304,8 @@ else
 {
 response.send('Notification sent successfully');
 }
+
+});
 
 });
 
