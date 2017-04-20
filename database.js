@@ -212,7 +212,7 @@ data.Items.forEach(function(item) {
 	  })
 });
 
-console.log("Users:"+arr12);
+console.log("Users:"+JSON.stringify(arr12));
 
 }
 
