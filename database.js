@@ -210,18 +210,6 @@ data.Items.forEach(function(item) {
 	 arr12.push(item.fb_user_id);
 });
 
-function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index;
-}
-
-var uni_arr12 = arr12.filter( onlyUnique );
-
-console.log("Users:"+JSON.stringify(uni_arr12));
-
-}
-
-});
-
 
 var table = "offers";	
 
@@ -275,6 +263,14 @@ console.log("MessageData:"+JSON.stringify(messageData));
 
 var token = process.env.FB_PAGE_TOKEN;
 
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
+var uni_arr12 = arr12.filter( onlyUnique );
+
+console.log("Users:"+JSON.stringify(uni_arr12));
+
 uni_arr12.forEach(function(arr13) {
 
 var user_id = arr13;
@@ -313,6 +309,11 @@ response.send('Notification sent successfully');
 
 });
 	
+}
+
+});
+
+
 }
 
 });
