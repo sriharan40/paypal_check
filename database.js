@@ -191,6 +191,45 @@ catch(e)
 	
 }
 
+
+else if(notify)
+{
+var text = "Good morning. Have a Nice day."
+
+var token = process.env.FB_PAGE_TOKEN;
+
+var user_id = '1627615607263900';
+
+var requestData = {
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
+      json: {
+        dashbotTemplateId: 'right',		  
+        recipient: {
+			id:user_id
+			},
+        message: {
+		   text:text	
+		}
+      }
+};
+
+console.log('RequestData:', requestData);
+
+request11(requestData, function(error, res, body) {  
+if (error) {
+  console.log('Error sending message: ', error);
+} else if (res.body.error) {
+  console.log('Error: ', res.body.error);
+  }
+
+});
+
+	
+}
+
+
 else if(categorytitle && categorysubtitle && categoryimgurl)
 {
 var table = "category";	
@@ -277,45 +316,6 @@ response.send(['Offers category list', data.Items]);
     }); */
 	
 }
-
-
-else if(notify)
-{
-var text = "Good morning. Have a Nice day."
-
-var token = process.env.FB_PAGE_TOKEN;
-
-var user_id = '1627615607263900';
-
-var requestData = {
-      url: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: {access_token:token},
-      method: 'POST',
-      json: {
-        dashbotTemplateId: 'right',		  
-        recipient: {
-			id:user_id
-			},
-        message: {
-		   text:text	
-		}
-      }
-};
-
-console.log('RequestData:', requestData);
-
-request11(requestData, function(error, res, body) {  
-if (error) {
-  console.log('Error sending message: ', error);
-} else if (res.body.error) {
-  console.log('Error: ', res.body.error);
-  }
-
-});
-
-	
-}
-
 
 
 else if(mobile && user_id)
