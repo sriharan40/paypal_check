@@ -207,9 +207,7 @@ if (err) {
 	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
 } else {	
 data.Items.forEach(function(item) {  
-	 arr12.push({
-		"user_id": item.fb_user_id		 
-	  })
+	 arr12.push(item.fb_user_id);
 });
 
 function onlyUnique(value, index, self) { 
