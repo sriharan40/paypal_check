@@ -212,7 +212,12 @@ data.Items.forEach(function(item) {
 	  })
 });
 
-var uni_arr12 = arr12.filter((x, i, a) => a.indexOf(x) == i);
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
+
+var uni_arr12 = arr12.filter( onlyUnique );
 
 console.log("Users:"+JSON.stringify(uni_arr12));
 
