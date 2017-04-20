@@ -76,7 +76,7 @@ var name = request.params.name;
 
 var offers = request.params.offer;
 
-var notify = request.params.notify;
+var notification = request.params.notify;
 
 var category = request.params.category;
 
@@ -192,7 +192,7 @@ catch(e)
 }
 
 
-else if(notify)
+else if(notification)
 {
 
 var table = "offers";	
@@ -249,7 +249,7 @@ var token = process.env.FB_PAGE_TOKEN;
 
 var user_id = '1627615607263900';
 
-var requestData = {
+var requestData12 = {
       url: 'https://graph.facebook.com/v2.6/me/messages',
       qs: {access_token:token},
       method: 'POST',
@@ -262,14 +262,18 @@ var requestData = {
       }
 };
 
-console.log('RequestData:', requestData);
+console.log('RequestData:', requestData12);
 
-request11(requestData, function(error, res, body) {  
+request12(requestData12, function(error, res, body) {  
 if (error) {
   console.log('Error sending message: ', error);
 } else if (res.body.error) {
   console.log('Error: ', res.body.error);
   }
+else
+{
+response.send('Notification sent successfully');
+}
 
 });
 
