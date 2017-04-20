@@ -212,7 +212,9 @@ data.Items.forEach(function(item) {
 	  })
 });
 
-console.log("Users:"+JSON.stringify(arr12));
+var uni_arr12 = arr12.unique();
+
+console.log("Users:"+JSON.stringify(uni_arr12));
 
 }
 
