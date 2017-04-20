@@ -295,11 +295,7 @@ if (error) {
   console.log('Error sending message: ', error);
 } else if (res.body.error) {
   console.log('Error: ', res.body.error);
-  }
-//else
-//{
-//
-//}
+}
 
 });
 
