@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var app = express();
-var request = require("request");
+var request11 = require("request");
 var AWS = require('aws-sdk');
 
 AWS.config.update({
@@ -304,7 +304,7 @@ var requestData = {
 
 console.log('RequestData:', requestData);
 
-request(requestData, function(error, res, body) {  
+request11(requestData, function(error, res, body) {  
 if (error) {
   console.log('Error sending message: ', error);
 } else if (res.body.error) {
