@@ -296,10 +296,10 @@ if (error) {
 } else if (res.body.error) {
   console.log('Error: ', res.body.error);
   }
-else
-{
-response.send('Notification sent successfully');
-}
+//else
+//{
+//response.send('Notification sent successfully');
+//}
 
 });
 
