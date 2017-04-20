@@ -298,7 +298,7 @@ if (error) {
   }
 //else
 //{
-//response.send('Notification sent successfully');
+//
 //}
 
 });
@@ -317,6 +317,8 @@ if (error) {
 }
 
 });
+
+response.send('Notification sent successfully');
 
 }
 
