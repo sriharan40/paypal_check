@@ -194,7 +194,56 @@ catch(e)
 
 else if(notify)
 {
-var text = "Good morning. Have a Nice day."
+
+var table = "offers";	
+
+var arr1 = [];
+
+var select_params = {
+	TableName:table
+};
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {	
+data.Items.forEach(function(item) {  
+	 arr1.push({
+		"type": "web_url",
+		"title": item.offer_name,
+		"url": item.description		 
+	  })
+});	  
+
+/* connection.query('select * from category', function(err, rows12) { */
+
+var table = "category";	
+
+var select_params1 = {
+	TableName:table
+};
+
+docClient.scan(select_params1, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {	
+
+ var messageData = {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: [{
+                        title: data.Items[0].title,
+                        subtitle: data.Items[0].sub_title,
+                        image_url: data.Items[0].img_url,
+                        buttons: arr1
+                    }]
+                }
+            }
+    };
+
+console.log("MessageData:"+JSON.stringify(messageData));
 
 var token = process.env.FB_PAGE_TOKEN;
 
@@ -209,9 +258,7 @@ var requestData = {
         recipient: {
 			id:user_id
 			},
-        message: {
-		   text:text	
-		}
+        message: messageData
       }
 };
 
