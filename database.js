@@ -194,6 +194,30 @@ catch(e)
 
 else if(notification)
 {
+var table = "t_users";	
+
+var arr12 = [];
+
+var select_params = {
+	TableName:table
+};
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {	
+data.Items.forEach(function(item) {  
+	 arr12.push({
+		fb_user_id		 
+	  })
+});
+
+console.log("Users:"+arr12);
+
+}
+
+});
+
 
 var table = "offers";	
 
