@@ -86,7 +86,11 @@ var delete_offer = request.params.delete_offer;
 
 var id = request.params.id;
 
-var offer_name = request.params.offer_name;
+var sub_title = request.params.sub_title;
+
+var offer_name = request.params.title;
+
+var category_id = request.params.category_id;
 
 var user_name = request.params.user_name;
 
@@ -120,10 +124,21 @@ var categoryimgurl = ("" + categoryimgurl).replace(/%20/g, ' ');
 
 console.log("Category Img URL:"+categoryimgurl);
 
-
 if(offer_name)
 {
-var offer_name = ("" + request.params.offer_name).replace(/%20/g, ' ');
+var offer_name = ("" + request.params.title).replace(/%20/g, ' ');
+}
+
+if(sub_title)
+{
+var sub_title = ("" + request.params.sub_title).replace(/%20/g, ' ');
+}
+
+var img_url = request.params.img_url;
+
+if(img_url)
+{
+var img_url = ("" + img_url).replace(/%20/g, ' ');	
 }
 
 var description = request.params.description;
@@ -132,6 +147,7 @@ if(description)
 {
 var description = ("" + request.params.description).replace(/%20/g, ' ');
 }
+
 
 if(user_name && password)
 {
@@ -468,7 +484,7 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 
 }
 
-else if(offer_name && description)
+else if(offer_name && description && sub_title  && img_url && category_id)
 {
 
 	//AWS database code
@@ -494,7 +510,10 @@ else if(offer_name && description)
 		Item:{
 			"id": data.Count + 1,
 			"offer_name": offer_name,
-			"description": description
+			"sub_title": sub_title,
+			"image_url": img_url,
+			"description": description,
+			"category": category_id
 		}
 	};
 	
