@@ -129,14 +129,10 @@ if(offer_name)
 var offer_name = ("" + request.params.title).replace(/%20/g, ' ');
 }
 
-console.log("Title:"+offer_name);
-
 if(sub_title)
 {
 var sub_title = ("" + request.params.sub_title).replace(/%20/g, ' ');
 }
-
-console.log("Sub Title:"+sub_title);
 
 var img_url = request.params.img_url;
 
@@ -145,16 +141,12 @@ if(img_url)
 var img_url = ("" + img_url).replace(/%20/g, ' ');	
 }
 
-console.log("IMG URL:"+img_url);
-
 var description = request.params.description;
 
 if(description)
 {
 var description = ("" + request.params.description).replace(/%20/g, ' ');
 }
-
-console.log("Link:"+description);
 
 if(user_name && password)
 {
@@ -490,6 +482,16 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 }); */		
 
 }
+
+console.log("Title: " + offer_name);
+
+console.log("Description: " + description);
+
+console.log("Sub Title: " + sub_title);
+
+console.log("Image url: " + img_url);
+
+console.log("Category: " + category_id);
 
 else if(offer_name && description && sub_title  && img_url && category_id)
 {
