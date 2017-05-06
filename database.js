@@ -88,7 +88,11 @@ var id = request.params.id;
 
 var sub_title = request.params.sub_title;
 
+console.log("Sub Title:"+sub_title);
+
 var offer_name = request.params.title;
+
+console.log("Title:"+offer_name);
 
 var category_id = request.params.category_id;
 
