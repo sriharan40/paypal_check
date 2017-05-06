@@ -5,10 +5,10 @@ var AWS = require('aws-sdk');
 var request12 = require("request");
 
 AWS.config.update({
-  region: "us-west-2",
+  region: process.env.AWS_REGION,
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  endpoint: "https://dynamodb.us-west-2.amazonaws.com"
+  endpoint: process.env.AWS_ENDPOINT
 });
 
 var dynamodb = new AWS.DynamoDB();
@@ -75,6 +75,8 @@ var user_id = request.params.user_id;
 var name = request.params.name;
 
 var offers = request.params.offer;
+
+var offer_campaign = request.params.offer;
 
 var notification = request.params.notify;
 
@@ -616,6 +618,33 @@ connection.query('SELECT * from caller_system', function(err, rows, fields) {
 }
 
 else if(offers)
+{
+
+var table = "offers";	
+
+var select_params = {
+	TableName:table
+};
+
+docClient.scan(select_params, function(err, data) {
+if (err) {
+	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+} else {
+response.send(['Offers list', data.Items]);
+}		
+});
+
+/* connection.query('SELECT * from offers', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Offers list', rows]);
+    }); */
+	
+}
+
+else if(offer_campaign)
 {
 
 var table = "offers";	
