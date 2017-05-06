@@ -129,7 +129,7 @@ if(offer_name)
 var offer_name = ("" + request.params.title).replace(/%20/g, ' ');
 }
 
-console.log("Title:"+title);
+console.log("Title:"+offer_name);
 
 if(sub_title)
 {
