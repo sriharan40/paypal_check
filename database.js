@@ -88,11 +88,7 @@ var id = request.params.id;
 
 var sub_title = request.params.sub_title;
 
-console.log("Sub Title:"+sub_title);
-
 var offer_name = request.params.title;
-
-console.log("Title:"+offer_name);
 
 var category_id = request.params.category_id;
 
@@ -497,6 +493,8 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 
 else if(offer_name && description && sub_title  && img_url && category_id)
 {
+
+console.log("Working code");
 
 	//AWS database code
 
