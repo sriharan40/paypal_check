@@ -148,6 +148,17 @@ if(description)
 var description = ("" + request.params.description).replace(/%20/g, ' ');
 }
 
+console.log("Title: " + offer_name);
+
+console.log("Description: " + description);
+
+console.log("Sub Title: " + sub_title);
+
+console.log("Image url: " + img_url);
+
+console.log("Category: " + category_id);
+
+
 if(user_name && password)
 {
 
@@ -206,6 +217,86 @@ catch(e)
 
 /* }); */
 	
+}
+
+else if(offer_name && description && sub_title  && img_url && category_id)
+{
+
+console.log("Working code");
+
+	//AWS database code
+
+	var table = "offers";	
+
+	var count_params = {
+		TableName:table,
+		Select: 'COUNT'
+	};
+	
+	var select_params = {
+		TableName:table
+	};
+	
+	docClient.scan(count_params, function(err, data) {
+		if (err) {
+			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+	
+	var params = {
+		TableName:table,
+		Item:{
+			"id": data.Count + 1,
+			"offer_name": offer_name,
+			"sub_title": sub_title,
+			"image_url": img_url,
+			"description": description,
+			"category": category_id
+		}
+	};
+	
+	console.log("Params:"+JSON.stringify(params));
+	
+	docClient.put(params, function(err, data_output) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data_output, null, 2));
+		}
+	});
+	
+		}
+
+});
+	
+/* connection.query('SELECT * from offers', function(err, results) {
+
+var id = results.length + 1;	
+
+var post  = {id: id , offer_name: offer_name , description: description};
+	
+connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
+});	
+
+}); */
+
+
+
+/* connection.query('SELECT * from offers', function(err, rows, fields) {
+	if (err) {
+		console.log('error: ', err);
+		throw err;
+	}
+	response.send(['Offers list', rows]);
+}); */		
+
+	docClient.scan(select_params, function(err, data) {
+		if (err) {
+			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+		response.send(['Offers list', data.Items]);
+		}		
+	});	
+
 }
 
 
@@ -483,95 +574,6 @@ connection.query('SELECT * from t_users', function(err, rows, fields) {
 
 }
 
-console.log("Title: " + offer_name);
-
-console.log("Description: " + description);
-
-console.log("Sub Title: " + sub_title);
-
-console.log("Image url: " + img_url);
-
-console.log("Category: " + category_id);
-
-else if(offer_name && description && sub_title  && img_url && category_id)
-{
-
-console.log("Working code");
-
-	//AWS database code
-
-	var table = "offers";	
-
-	var count_params = {
-		TableName:table,
-		Select: 'COUNT'
-	};
-	
-	var select_params = {
-		TableName:table
-	};
-	
-	docClient.scan(count_params, function(err, data) {
-		if (err) {
-			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
-		} else {
-	
-	var params = {
-		TableName:table,
-		Item:{
-			"id": data.Count + 1,
-			"offer_name": offer_name,
-			"sub_title": sub_title,
-			"image_url": img_url,
-			"description": description,
-			"category": category_id
-		}
-	};
-	
-	console.log("Params:"+JSON.stringify(params));
-	
-	docClient.put(params, function(err, data_output) {
-		if (err) {
-			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
-		} else {
-			console.log("Added item:", JSON.stringify(data_output, null, 2));
-		}
-	});
-	
-		}
-
-});
-	
-/* connection.query('SELECT * from offers', function(err, results) {
-
-var id = results.length + 1;	
-
-var post  = {id: id , offer_name: offer_name , description: description};
-	
-connection.query('INSERT INTO offers SET ?', post, function(err, rows, fields) {
-});	
-
-}); */
-
-
-
-/* connection.query('SELECT * from offers', function(err, rows, fields) {
-	if (err) {
-		console.log('error: ', err);
-		throw err;
-	}
-	response.send(['Offers list', rows]);
-}); */		
-
-	docClient.scan(select_params, function(err, data) {
-		if (err) {
-			console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
-		} else {
-		response.send(['Offers list', data.Items]);
-		}		
-	});	
-
-}
 
 else if(delete_offer && id)
 {
