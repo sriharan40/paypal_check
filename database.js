@@ -103,7 +103,7 @@ if(categorytitle)
 var categorytitle = ("" + categorytitle).replace(/%20/g, ' ');	
 }
 
-console.log("Category Title:"+categorytitle);
+//console.log("Category Title:"+categorytitle);
 
 var categorysubtitle = request.params.category_sub_title;
 
@@ -112,7 +112,7 @@ if(categorysubtitle)
 var categorysubtitle = ("" + categorysubtitle).replace(/%20/g, ' ');	
 }
 
-console.log("Category Sub Title:"+categorysubtitle);
+//console.log("Category Sub Title:"+categorysubtitle);
 
 
 var categoryimgurl = request.params.category_img_url;
@@ -122,17 +122,21 @@ if(categoryimgurl)
 var categoryimgurl = ("" + categoryimgurl).replace(/%20/g, ' ');	
 }
 
-console.log("Category Img URL:"+categoryimgurl);
+//console.log("Category Img URL:"+categoryimgurl);
 
 if(offer_name)
 {
 var offer_name = ("" + request.params.title).replace(/%20/g, ' ');
 }
 
+console.log("Title:"+title);
+
 if(sub_title)
 {
 var sub_title = ("" + request.params.sub_title).replace(/%20/g, ' ');
 }
+
+console.log("Sub Title:"+sub_title);
 
 var img_url = request.params.img_url;
 
@@ -141,6 +145,8 @@ if(img_url)
 var img_url = ("" + img_url).replace(/%20/g, ' ');	
 }
 
+console.log("IMG URL:"+img_url);
+
 var description = request.params.description;
 
 if(description)
@@ -148,6 +154,7 @@ if(description)
 var description = ("" + request.params.description).replace(/%20/g, ' ');
 }
 
+console.log("Link:"+description);
 
 if(user_name && password)
 {
