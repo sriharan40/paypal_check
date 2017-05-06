@@ -333,36 +333,31 @@ if (err) {
 } else {	
 data.Items.forEach(function(item) {  
 	 arr1.push({
-		"type": "web_url",
 		"title": item.offer_name,
-		"url": item.description		 
+		"item_url": item.description,
+		"image_url": item.image_url,
+		"subtitle": item.sub_title,
+		"buttons": [
+			{
+				"type": "web_url",
+				"url": item.description,
+				"title": "View"
+			}
+		],
+		"default_action": {
+			"type": "web_url",
+			"url": item.description
+		}
 	  })
 });	  
 
-/* connection.query('select * from category', function(err, rows12) { */
-
-var table = "category";	
-
-var select_params1 = {
-	TableName:table
-};
-
-docClient.scan(select_params1, function(err, data) {
-if (err) {
-	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
-} else {	
 
  var messageData = {
             attachment: {
                 type: "template",
                 payload: {
                     template_type: "generic",
-                    elements: [{
-                        title: data.Items[0].title,
-                        subtitle: data.Items[0].sub_title,
-                        image_url: data.Items[0].img_url,
-                        buttons: arr1
-                    }]
+                    elements: arr1
                 }
             }
     };
@@ -406,10 +401,6 @@ if (error) {
 }
 
 });
-
-});
-
-}
 
 });
 	
