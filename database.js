@@ -343,11 +343,7 @@ data.Items.forEach(function(item) {
 				"url": item.description,
 				"title": "View"
 			}
-		],
-		"default_action": {
-			"type": "web_url",
-			"url": item.description
-		}
+		]
 	  })
 });	  
 
