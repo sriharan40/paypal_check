@@ -76,7 +76,7 @@ var name = request.params.name;
 
 var offers = request.params.offer;
 
-var offer_campaign = request.params.offer;
+var offer_campaign = request.params.offer_campaign;
 
 var notification = request.params.notify;
 
