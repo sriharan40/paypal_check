@@ -693,7 +693,7 @@ var select_params = {
 	}
 };
 
-console.log("Select Params: "+select_params);
+console.log("Select Params: "+JSON.stringify(select_params));
 
 docClient.scan(select_params, function(err, data) {
 if (err) {
