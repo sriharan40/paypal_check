@@ -646,7 +646,14 @@ var select_params = {
 	TableName:table,
 	Key:{
         "category": 1
-    }
+    },	
+	FilterExpression: "#category = :c",
+	ExpressionAttributeNames: {
+		"#category":"category",
+	},
+	ExpressionAttributeValues: {
+		 ":c":offers
+	}
 };
 
 docClient.scan(select_params, function(err, data) {
@@ -676,7 +683,14 @@ var select_params = {
 	TableName:table,
 	Key:{
         "category": 2
-    }
+    },
+	FilterExpression: "#category = :c",
+	ExpressionAttributeNames: {
+		"#category":"category",
+	},
+	ExpressionAttributeValues: {
+		 ":c":offer_campaign
+	}
 };
 
 docClient.scan(select_params, function(err, data) {
