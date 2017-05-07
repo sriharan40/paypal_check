@@ -693,6 +693,8 @@ var select_params = {
 	}
 };
 
+console.log("Select Params: "+select_params);
+
 docClient.scan(select_params, function(err, data) {
 if (err) {
 	console.error("Unable to query. Error JSON:", JSON.stringify(err, null, 2));
