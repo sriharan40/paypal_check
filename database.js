@@ -325,7 +325,14 @@ var select_params = {
 	TableName:table,
 	Key:{
         "category": 2
-    }
+    },	
+	FilterExpression: "#category = :c",
+	ExpressionAttributeNames: {
+		"#category":"category",
+	},
+	ExpressionAttributeValues: {
+		 ":c":notification
+	}
 };
 
 docClient.scan(select_params, function(err, data) {
