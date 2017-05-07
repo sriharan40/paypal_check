@@ -652,7 +652,7 @@ var select_params = {
 		"#category":"category",
 	},
 	ExpressionAttributeValues: {
-		 ":c": 1
+		 ":c":offers
 	}
 };
 
@@ -689,7 +689,7 @@ var select_params = {
 		"#category":"category",
 	},
 	ExpressionAttributeValues: {
-		 ":c": 2
+		 ":c":offer_campaign
 	}
 };
 
