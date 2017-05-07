@@ -222,8 +222,6 @@ catch(e)
 else if(offer_name && description && sub_title  && img_url && category_id)
 {
 
-console.log("Working code");
-
 	//AWS database code
 
 	var table = "offers";	
@@ -324,7 +322,10 @@ var table = "offers";
 var arr1 = [];
 
 var select_params = {
-	TableName:table
+	TableName:table,
+	Key:{
+        "category": 2
+    }
 };
 
 docClient.scan(select_params, function(err, data) {
@@ -642,7 +643,10 @@ else if(offers)
 var table = "offers";	
 
 var select_params = {
-	TableName:table
+	TableName:table,
+	Key:{
+        "category": 1
+    }
 };
 
 docClient.scan(select_params, function(err, data) {
@@ -669,7 +673,10 @@ else if(offer_campaign)
 var table = "offers";	
 
 var select_params = {
-	TableName:table
+	TableName:table,
+	Key:{
+        "category": 2
+    }
 };
 
 docClient.scan(select_params, function(err, data) {
